@@ -1,0 +1,299 @@
+@import 'color.scss';
+@import 'breakpoints.scss';
+@import 'typography.scss';
+@import 'reset.scss';
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-spartan;
+
+    &[data-theme="1"]{
+        background-color: $t1-main-bg;
+    }
+
+    &[data-theme="2"]{
+        background-color: $t2-main-bg;
+    }
+
+    &[data-theme="3"]{
+        background-color: $t3-main-bg;
+    }
+}
+
+$calculator-width-desktop:500px;
+$calculator-width-mobile:100%;
+
+.calculator{
+    width: $calculator-width-desktop;
+    @include mobile-query{
+        width: $calculator-width-mobile;
+        padding:1rem;
+    }
+    &__header, &__themes{
+        display: flex;
+        align-items: center;
+    }
+
+    &__themes{
+        position: relative;
+        margin-left: auto;
+        border-radius: 50px;
+        padding:0.3rem;
+        &::before{
+            content:'THEME';
+            position: absolute;
+            right:calc(100% + 1rem);
+        }
+    }
+
+    &__theme{
+        position: relative;
+        &:nth-child(1)::before{
+            content:'1';
+        }
+        &:nth-child(2)::before{
+            content:'2';
+        }
+        &:nth-child(3)::before{
+            content:'3';
+        }
+        &:nth-child(1),&:nth-child(2),&:nth-child(3){
+            &::before{
+                position: absolute;
+                z-index: 1;
+                bottom:calc(100% + 10px);
+                left:5px;
+            }
+        }
+    }
+
+    &__theme label{
+        border-radius: 50%;
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin: auto;
+        opacity:0;
+        pointer-events: none;
+    }
+
+    &__theme input, &__theme label{
+        height:1rem;
+        width: 1rem;
+    }
+
+    &__theme input{
+        opacity: 0;
+        &:checked + label{
+            opacity: 1;
+        }
+    }
+
+    &__display,&__buttons,&__button{
+        border-radius: 10px;
+    }
+
+    &__display, &__buttons{
+        padding:2rem;
+    }
+
+    &__display{
+        font-size:$font-size-button*1.5;
+        margin-bottom: 1rem;
+        text-align: right;
+
+        @include mobile-query{
+            font-size:$font-size-button-2*1.5;
+        }
+    }
+
+    &__buttons{
+        font-size:$font-size-button;
+        display: grid;
+        grid-gap: 25px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-items: stretch;
+
+        @include mobile-query{
+            font-size:$font-size-button-2;
+        }
+    }
+
+    &__button{
+        text-transform: uppercase;
+        width: 100%;
+        min-height:50px;
+        padding:0.5rem;
+        &[data-value="reset"], &[data-value="="]{
+            grid-column: span 2;
+        }
+
+        &[data-value="reset"], &[data-value="="], &[data-value="delete"]{
+            font-size:$font-size-button / 2;
+        }
+
+        &:active{
+            filter:none !important;
+        }
+    }
+}
+
+@mixin button-dropshadow($shadow-color){
+    filter:drop-shadow(0px 5px 0px $shadow-color);
+}
+
+body[data-theme="1"]{
+    h1{
+        color:$t1-text-color-2;
+    }
+
+    .calculator__themes{
+        background-color: $t1-toggle-bg;
+        &::before{
+            color:$t1-text-color-2;
+        }
+    }
+
+    .calculator__theme::before{
+        color:$t1-text-color-2;
+    }
+
+    .calculator__theme label{
+        background-color: $t1-toggle-checked;
+    }
+
+    .calculator__display{
+        color:$t1-text-color-2;
+        background-color: $t1-screen-bg;
+    }
+
+    .calculator__buttons{
+        background-color: $t1-keypad-bg;
+    }
+
+    .calculator__button{
+        color:$t1-text-color-1;
+        background-color: $t1-key-bg-3;
+        @include button-dropshadow($t1-key-shadow-3);
+    }
+
+    .calculator__button{
+        &[data-value="delete"], &[data-value="reset"]{
+            color:$t1-text-color-2;
+            background-color: $t1-key-bg-1;
+            @include button-dropshadow($t1-key-shadow-1);
+        }  
+        
+        &[data-value="="]{
+            color:$t1-text-color-2;
+            background-color: $t1-key-bg-2;
+            @include button-dropshadow($t1-key-shadow-2);
+        }
+    }
+}
+
+body[data-theme="2"]{
+    h1{
+        color:$t2-text-color-1;
+    }
+
+    .calculator__themes{
+        background-color: $t2-toggle-bg;
+        &::before{
+            color:$t2-text-color-1;
+        }
+    }
+
+    .calculator__theme::before{
+        color:$t2-text-color-1;
+    }
+
+    .calculator__theme label{
+        background-color: $t2-toggle-checked;
+    }
+
+    .calculator__display{
+        color:$t2-text-color-1;
+        background-color: $t2-screen-bg;
+    }
+
+    .calculator__buttons{
+        background-color: $t2-keypad-bg;
+    }
+
+    .calculator__button{
+        color:$t2-text-color-1;
+        background-color: $t2-key-bg-3;
+        @include button-dropshadow($t2-key-shadow-3);
+    }
+
+    .calculator__button{
+        &[data-value="delete"], &[data-value="reset"]{
+            color:$t2-text-color-2;
+            background-color: $t2-key-bg-1;
+            @include button-dropshadow($t2-key-shadow-1);
+        }  
+        
+        &[data-value="="]{
+            color:$t2-text-color-2;
+            background-color: $t2-key-bg-2;
+            @include button-dropshadow($t2-key-shadow-2);
+        }
+    }
+}
+
+
+body[data-theme="3"]{
+    h1{
+        color:$t3-text-color-1;
+    }
+
+    .calculator__themes{
+        background-color: $t3-toggle-bg;
+        &::before{
+            color:$t3-text-color-1;
+        }
+    }
+
+    .calculator__theme::before{
+        color:$t3-text-color-1;
+    }
+
+    .calculator__theme label{
+        background-color: $t3-toggle-checked;
+    }
+
+    .calculator__display{
+        color:$t3-text-color-1;
+        background-color: $t3-screen-bg;
+    }
+
+    .calculator__buttons{
+        background-color: $t3-keypad-bg;
+    }
+
+    .calculator__button{
+        color:$t3-text-color-1;
+        background-color: $t3-key-bg-3;
+        @include button-dropshadow($t3-key-shadow-3);
+    }
+
+    .calculator__button{
+        &[data-value="delete"], &[data-value="reset"]{
+            color:$t3-text-color-3;
+            background-color: $t3-key-bg-1;
+            @include button-dropshadow($t3-key-shadow-1);
+        }  
+        
+        &[data-value="="]{
+            color:$t3-text-color-2;
+            background-color: $t3-key-bg-2;
+            @include button-dropshadow($t3-key-shadow-2);
+        }
+    }
+}

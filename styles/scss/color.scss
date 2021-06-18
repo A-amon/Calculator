@@ -1,0 +1,75 @@
+
+$base-color-1: 0;
+
+$white:hsl(0, 0, 100%);
+
+//////Theme 1
+//background
+$t1-main-bg:hsl(222,26%, 31%);
+$t1-toggle-bg:hsl(223,31%,20%);
+$t1-keypad-bg:$t1-toggle-bg;
+$t1-screen-bg:hsl(224,36%,15%);
+
+//key
+$t1-key-bg-1:hsl(225, 21%, 49%);
+$t1-key-shadow-1:hsl(224, 28%, 35%);
+
+$t1-key-bg-2:hsl(6, 63%, 50%);
+$t1-toggle-checked:$t1-key-bg-2;
+$t1-key-shadow-2:hsl(6, 70%, 34%);
+
+$t1-key-bg-3:hsl(30, 25%, 89%);
+$t1-key-shadow-3:hsl(28, 16%, 65%);
+
+//text
+$t1-text-color-1:hsl(221, 14%, 31%);
+$t1-text-color-2:$white;
+
+
+//////Theme 2
+//background
+$t2-main-bg:hsl(0, 0%, 90%);
+$t2-toggle-bg:hsl(0, 5%, 81%);
+$t2-keypad-bg:$t2-toggle-bg;
+$t2-screen-bg:hsl(0, 0%, 93%);
+
+//key
+$t2-key-bg-1:hsl(185, 42%, 37%);
+$t2-key-shadow-1:hsl(185, 58%, 25%);
+
+$t2-key-bg-2:hsl(25, 98%, 40%);
+$t2-toggle-checked:$t2-key-bg-2;
+$t2-key-shadow-2:hsl(25, 99%, 27%);
+
+$t2-key-bg-3:hsl(45, 7%, 89%);
+$t2-key-shadow-3:hsl(35, 11%, 61%);
+
+//text
+$t2-text-color-1:hsl(60, 10%, 19%);
+$t2-text-color-2:$white;
+
+
+//////Theme 3
+//background
+$t3-main-bg:hsl(268, 75%, 9%);
+$t3-toggle-bg:hsl(268, 71%, 12%);
+$t3-keypad-bg:$t3-toggle-bg;
+$t3-screen-bg:$t3-toggle-bg;
+
+//key
+$t3-key-bg-1:hsl(281, 89%, 26%);
+$t3-key-shadow-1:hsl(285, 91%, 52%);
+
+$t3-key-bg-2:hsl(176, 100%, 44%);
+$t3-toggle-checked:$t3-key-bg-2;
+$t3-key-shadow-2:hsl(177, 92%, 70%);
+
+$t3-key-bg-3:hsl(268, 47%, 21%);
+$t3-key-shadow-3:hsl(290, 70%, 36%);
+
+//text
+$t3-text-color-1:hsl(52, 100%, 62%);
+$t3-text-color-2:hsl(198, 20%, 13%);
+$t3-text-color-3:$white;
+
+

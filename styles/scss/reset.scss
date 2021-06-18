@@ -1,0 +1,20 @@
+
+html,body, ul{
+    margin:0;
+    padding:0;
+}
+
+ul{
+    list-style: none;
+}
+
+input[type="radio"]{
+    margin:0 0.3rem;
+}
+
+button{
+    background:inherit;
+    border:none;
+    font-family: inherit;
+    font-size: inherit;
+}

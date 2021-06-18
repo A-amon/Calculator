@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/icons/favicon-32x32.png" type="image/png">
+    <link rel="stylesheet" href="styles/css/index.css">
+    <script src="index.js"></script>
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="calculator__header">
+            <h1>calc</h1>
+            <ul class="calculator__themes">
+                <li class="calculator__theme">
+                    <input id="radio__theme1" type="radio" data-theme="1" name="radio__theme1" aria-label="Theme 1">
+                    <label for="radio__theme1"></label>
+                </li>
+                <li class="calculator__theme">
+                    <input id="radio__theme2" type="radio" data-theme="2" name="radio__theme2" aria-label="Theme 2">
+                    <label for="radio__theme2"></label>
+                </li>
+                <li class="calculator__theme">
+                    <input id="radio__theme3" type="radio" data-theme="3" name="radio__theme3" aria-label="Theme 3">
+                    <label for="radio__theme3"></label>
+                </li>
+            </ul>
+        </div>
+        <div class="calculator__display">
+            <span class="display__text" aria-live="assertive">0</span>
+        </div>
+        <div class="calculator__buttons">
+            <button class="calculator__button" data-value="7" aria-label="7">
+                7
+            </button>
+            <button class="calculator__button" data-value="8" aria-label="8">
+                8
+            </button>
+            <button class="calculator__button" data-value="9" aria-label="9">
+                9
+            </button>
+            <button class="calculator__button" data-value="delete" aria-label="Delete">
+                del
+            </button>
+            <button class="calculator__button" data-value="4" aria-label="4">
+                4
+            </button>
+            <button class="calculator__button" data-value="5" aria-label="5">
+                5
+            </button>
+            <button class="calculator__button" data-value="6" aria-label="6">
+                6
+            </button>
+            <button class="calculator__button" data-value="+" aria-label="Add">
+                +
+            </button>
+            <button class="calculator__button" data-value="1" aria-label="1">
+                1
+            </button>
+            <button class="calculator__button" data-value="2" aria-label="2">
+                2
+            </button>
+            <button class="calculator__button" data-value="3" aria-label="3">
+                3
+            </button>
+            <button class="calculator__button" data-value="-" aria-label="Minus">
+                -
+            </button>
+            <button class="calculator__button" data-value="." aria-label="Decimal point">
+                .
+            </button>
+            <button class="calculator__button" data-value="0" aria-label="0">
+                0
+            </button>
+            <button class="calculator__button" data-value="/" aria-label="Divide">
+                /
+            </button>
+            <button class="calculator__button" data-value="x" aria-label="Multiply">
+                x
+            </button>
+            <button class="calculator__button" data-value="reset" aria-label="Reset">
+                reset
+            </button>
+            <button class="calculator__button" data-value="=" aria-label="Equal">
+                =
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
