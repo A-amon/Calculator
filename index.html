@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/icons/favicon-32x32.png" type="image/png">
     <link rel="stylesheet" href="styles/css/index.css">
-    <script src="index.js"></script>
     <title>Calculator</title>
 </head>
 
@@ -17,21 +16,21 @@
             <h1>calc</h1>
             <ul class="calculator__themes">
                 <li class="calculator__theme">
-                    <input id="radio__theme1" type="radio" data-theme="1" name="radio__theme1" aria-label="Theme 1">
-                    <label for="radio__theme1"></label>
+                    <input type="radio" data-theme="1" name="theme" aria-label="Theme 1">
+                    <label for="theme--1"></label>
                 </li>
                 <li class="calculator__theme">
-                    <input id="radio__theme2" type="radio" data-theme="2" name="radio__theme2" aria-label="Theme 2">
-                    <label for="radio__theme2"></label>
+                    <input type="radio" data-theme="2" name="theme" aria-label="Theme 2">
+                    <label for="theme--2"></label>
                 </li>
                 <li class="calculator__theme">
-                    <input id="radio__theme3" type="radio" data-theme="3" name="radio__theme3" aria-label="Theme 3">
-                    <label for="radio__theme3"></label>
+                    <input type="radio" data-theme="3" name="theme" aria-label="Theme 3">
+                    <label for="theme--3"></label>
                 </li>
             </ul>
         </div>
         <div class="calculator__display">
-            <span class="display__text" aria-live="assertive">0</span>
+            <span class="display__text" aria-label="0">0</span>
         </div>
         <div class="calculator__buttons">
             <button class="calculator__button" data-value="7" aria-label="7">
@@ -90,6 +89,23 @@
             </button>
         </div>
     </div>
+    <!-- <div id="mocha"></div> -->
+
+    <script src="index.js"></script>
+
+    <!--Test-->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/9.0.0/mocha.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/9.0.0/mocha.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.4/chai.min.js"></script>
+
+    <script class="mocha-init">
+        mocha.setup('bdd')
+        mocha.checkLeaks()
+    </script>
+    <script src="test.js"></script>
+    <script class="mocha-exec">
+        mocha.run()
+    </script> -->
 </body>
 
 </html>

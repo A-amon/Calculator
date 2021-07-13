@@ -1,75 +1,59 @@
-var themes
-var prevSelected = null
-var equation = "0"
-var lastEqChar = ""
+var equation = '0'
+var lastEqChar = ''
 var doReset = false
 
-window.onload = function () {
-    themes = document.getElementsByClassName("calculator__theme")
-
-    for (let i = 0; i < 3; i++) {
-        let radio = themes[i].children[0]
-        radio.addEventListener("change", event => { handleRadio(event) })
-    }
-
-    const buttons = document.getElementsByClassName("calculator__button")
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", event => { handleButton(event) })
-    }
-
-    initTheme()
-}
-
-function handleButton(event) {
-    const value = event.target.getAttribute("data-value")
+//  click event handler
+function handleButton (event) {
+    const value = event.target.getAttribute('data-value')
 
     switch (value) {
-        case "reset":
+        case 'reset':
             reset()
             break
-        case "delete":
+        case 'delete':
             deleteBack()
             break
-        case "=":
+        case '=':
             calculate()
             break
         default:
-            if (doReset)
+            if (doReset)    //  reset calculator's display if doReset=true
                 reset()
             addToDisplay(value)
     }
 }
 
 // delete one character at back
-function deleteBack() {
+function deleteBack () {
     equation = equation.slice(0, -1)
     setDisplay(equation)
 }
 
 // reset display to 0
-function reset() {
-    equation = "0"
+function reset () {
+    equation = '0'
     setDisplay(0)
     doReset = false
 }
 
 // calculate final result
-function calculate() {
+function calculate () {
     let { numbers, symbols } = splitNumbersSymbols()
 
     numbers = multiplyDivide(numbers, symbols)
 
+    //  calculate if at least 2 numbers in equation
     if (numbers.length > 1) {
-        symbols = symbols.filter(symbol => symbol !== "x" && symbol !== "/")    //only contains + and -
+        symbols = symbols.filter(symbol => symbol !== 'x' && symbol !== '/')    //  only contains + and -
 
         let result = 0
         for (let [ind, symbol] of symbols.entries()) {
             if (ind === 0)
-                result = numbers[ind]
-            if (symbol === "+") {
+                result = numbers[ind]   //  initialize result with first number in equation
+            if (symbol === '+') {       //  add operation
                 result += numbers[ind + 1]
             }
-            else {
+            else {                      //  subtract operation
                 result -= numbers[ind + 1]
             }
         }
@@ -78,101 +62,90 @@ function calculate() {
     else {
         setDisplay(numbers[0])
     }
-    doReset = true  //reset display when new input
+    doReset = true  //  reset display when new input
 }
 
-//multiply and divide
-function multiplyDivide(numbers, symbols) {
+//  multiply and divide
+function multiplyDivide (numbers, symbols) {
     let countOp = 0
     for (let [ind, symbol] of symbols.entries()) {
-        if (symbol === "x" || symbol === "/") {
+        if (symbol === 'x' || symbol === '/') {
             let result = null
             let symbolInd = ind - countOp
-            if (symbol === "x") {
+            if (symbol === 'x') {           //  multiply operation
                 result = numbers[symbolInd] * numbers[symbolInd + 1]
             }
-            else {
+            else {                          //  divide operation
                 result = numbers[symbolInd] / numbers[symbolInd + 1]
             }
             numbers[symbolInd] = result
-            numbers.splice(symbolInd + 1, 1)
+            numbers.splice(symbolInd + 1, 1)    //  remove operator after calculation/ usage
             countOp++
         }
     }
 
-    return numbers  //numbers array after BODMAS multiply divide
+    return numbers  //  numbers array after BODMAS multiply divide
 }
 
-//get numbers and symbols array separately
-function splitNumbersSymbols() {
+//  get numbers and symbols array separately
+function splitNumbersSymbols () {
     let numbers = []
     let symbols = []
-    let prevChar = ""
+    let prevChar = ''
 
     const equationLength = equation.length
 
     for (let i = 0; i < equationLength; i++) {
         let char = equation[i]
 
-        if (!isNumber(char) && char !== ".") {  //push numbers to array if operators
+        if (!isNumber(char) && char !== '.') {  //  push numbers to array if operators
             numbers.push(parseFloat(prevChar))
             symbols.push(char)
-            prevChar = ""
+            prevChar = ''
         }
         else
             prevChar += char
-        if (i === equationLength - 1)   //push last number into numbers array
+        if (i === equationLength - 1 && isNumber(prevChar))   //  push last number into numbers array if is a number
             numbers.push(parseInt(prevChar))
     }
 
     return { numbers, symbols }
 }
 
-//check if character is number
-function isNumber(char) {
-    return !Number.isNaN(parseFloat(char))  //inverse of is not number
+//  check if character is number
+function isNumber (char) {
+    return !Number.isNaN(parseFloat(char))  //  inverse of is not number
 }
 
-//concatenate value to end of display
-function addToDisplay(text) {
-    if (!isNumber(lastEqChar) && !isNumber(text))    //dont include symbol if prev input is symbol
+//  concatenate value to end of display
+function addToDisplay (text) {
+    if (!isNumber(lastEqChar) && !isNumber(text))    // dont include symbol if prev input is symbol
         return
     lastEqChar = text
 
-    if (equation === "0")   //replace 0 with input on first input
-        equation = ""
+    if (equation === '0')   //  replace 0 with input on first input
+        equation = ''
     equation += text
     setDisplay(equation)
 }
 
-//set displayed text
-function setDisplay(text) {
-    let displayText = document.getElementsByClassName("display__text")[0]
+//  set displayed text
+function setDisplay (text) {
+    let displayText = document.getElementsByClassName('display__text')[0]
     displayText.textContent = text
 }
 
-function handleRadio(event) {
-    let selectedRadio = event.target
-    let selectedTheme = selectedRadio.getAttribute("data-theme")
+//  update theme
+function setTheme (theme) {
+    const selectedRadio = document.querySelector(`[data-theme='${theme}']`)
 
-    setTheme(selectedTheme)
+    document.body.setAttribute('data-theme', theme);
+    selectedRadio.checked = true
 }
 
-function setTheme(theme) {
-    document.body.setAttribute("data-theme", theme);
-
-    let selectedRadio = themes[theme - 1].children[0]
-
-    if (prevSelected != null)
-        prevSelected.checked = false    //uncheck previously checked radio
-
-    prevSelected = selectedRadio
-    prevSelected.checked = true
-}
-
-//initialize theme based on system preference
-function initTheme() {
-    //dark mode
+//  initialize theme based on system preference
+function initTheme () {
+    //  dark mode
     let defaultTheme = 3
 
     // light mode
@@ -182,3 +155,21 @@ function initTheme() {
 
     setTheme(defaultTheme)
 }
+
+const themes = document.getElementsByClassName('calculator__theme')
+
+//  assign event listener to radio buttons/ theme switchers
+for (let i = 0; i < 3; i++) {
+    let radio = themes[i].children[0]
+    radio.addEventListener('change', event => {
+        setTheme(event.target.getAttribute('data-theme'))
+    })
+}
+
+//  assign event listener to buttons
+const buttons = document.getElementsByClassName('calculator__button')
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', event => { handleButton(event) })
+}
+
+initTheme()
