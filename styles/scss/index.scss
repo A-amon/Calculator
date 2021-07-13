@@ -170,6 +170,11 @@ body[data-theme="1"]{
     .calculator__display{
         color:$t1-text-color-2;
         background-color: $t1-screen-bg;
+
+        .display__text{
+            overflow: auto;
+            display: block;
+        }
     }
 
     .calculator__buttons{

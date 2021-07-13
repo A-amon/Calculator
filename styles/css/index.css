@@ -207,6 +207,11 @@ body[data-theme="1"] .calculator__display {
   background-color: #182034;
 }
 
+body[data-theme="1"] .calculator__display .display__text {
+  overflow: auto;
+  display: block;
+}
+
 body[data-theme="1"] .calculator__buttons {
   background-color: #232c43;
 }
